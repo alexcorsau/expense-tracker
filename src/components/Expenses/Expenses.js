@@ -20,6 +20,11 @@ const Expenses = (props) => {
       filteredYear === "Select All"
   );
 
+  const removeExpense = (identifier) => {
+    console.log("delete the from Expenses:", identifier);
+    props.deleteSelectedItem(identifier);
+  };
+
   return (
     <li>
       <Card className="expenses">
@@ -28,7 +33,7 @@ const Expenses = (props) => {
           onChangeFilter={handleSelectedValue}
         />
         <ExpensesChart expenses={filteredExpenses} />
-        <ExpensesList items={filteredExpenses} />
+        <ExpensesList items={filteredExpenses} removeItem={removeExpense} />
 
         {/* {expenseContent} */}
 
