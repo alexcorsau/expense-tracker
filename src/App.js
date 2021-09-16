@@ -1,49 +1,25 @@
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [expenses, setExpenses] = useState([
-    // {
-    //   id: "e1",
-    //   title: "Toilet Paper",
-    //   amount: 94.12,
-    //   date: new Date(2020, 7, 14),
-    // },
-  ]);
-
-  // const expenses = [
-  //   {
-  //     id: "e1",
-  //     title: "Toilet Paper",
-  //     amount: 94.12,
-  //     date: new Date(2020, 7, 14),
-  //   },
-  //   { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-  //   {
-  //     id: "e3",
-  //     title: "Car Insurance",
-  //     amount: 294.67,
-  //     date: new Date(2021, 2, 28),
-  //   },
-  //   {
-  //     id: "e4",
-  //     title: "New Desk (Wooden)",
-  //     amount: 450,
-  //     date: new Date(2021, 5, 12),
-  //   },
-  // ];
+  const [expenses, setExpenses] = useState(
+    JSON.parse(window.localStorage.getItem("expenses")) || []
+  );
 
   const addExpenseHandler = (expense) => {
     console.log("InApp.js");
-    // console.log(expense);
-    // expenses.push(expense);
-    // setExpenses(...expenses, expense);
     setExpenses((expenses) => {
       return [...expenses, expense];
     });
     console.log(expenses);
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("expenses", JSON.stringify(expenses));
+    console.log("localStorage:", localStorage.expenses);
+    console.log("expenses: ", expenses);
+  });
 
   return (
     <div>

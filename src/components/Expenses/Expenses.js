@@ -16,7 +16,7 @@ const Expenses = (props) => {
 
   const filteredExpenses = expensesArray.filter(
     (element) =>
-      element.date.getFullYear() === Number(filteredYear) ||
+      new Date(element.date).getFullYear() === Number(filteredYear) ||
       filteredYear === "Select All"
   );
 

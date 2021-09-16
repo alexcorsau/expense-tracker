@@ -11,7 +11,7 @@ const ExpensesList = (props) => {
         <ExpenseItem
           title={filteredElement.title}
           amount={filteredElement.amount}
-          date={filteredElement.date}
+          date={new Date(filteredElement.date)}
           key={filteredElement.id}
         />
       ))}
